@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+// 数据库 user 模型
 const UserSchema = new Schema({
   username: {
     type: String,

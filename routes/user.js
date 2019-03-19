@@ -3,6 +3,7 @@ const UserModel = require('../models/user')
 
 module.exports = {
     async signup(ctx, next) {
+        // get 请求时返回 模板页面
         if(ctx.method === 'GET') {
             await ctx.render('signup', {
                 title: '用户注册'
@@ -10,6 +11,7 @@ module.exports = {
             return
         }
 
+        // post 请求时，处理数据到数据库
         // 生成 slat
         const salt = await bcrypt.genSalt(10)
         console.log('yoooo', ctx.request.body)
