@@ -1,5 +1,5 @@
 const Koa = require('koa')
-const path = require('path')
+// const path = require('path')
 const views = require('koa-views')
 const mongoose = require('mongoose')
 const session = require('koa-session')
