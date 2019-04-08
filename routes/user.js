@@ -6,7 +6,7 @@ module.exports = {
         // get 请求时返回 模板页面
         if(ctx.method === 'GET') {
             await ctx.render('signup', {
-                title: '用户注册'
+                title: '用户注册',
             })
             return
         }
@@ -23,8 +23,42 @@ module.exports = {
             "email": email,
             "password": password,
         }
+        // 每次重新开关服务器或者数据库，需要删除原有的集合，否则会报错
         // 储存到数据库
         const result = await UserModel.create(user)
-        ctx.body = result
+        // 去登录
+        ctx.redirect('/signin')
+    },
+
+    async signin(ctx, next) {
+        // get 请求时返回 模板页面
+        if (ctx.method === 'GET') {
+            await ctx.render('signin', {
+                title: '用户登录',
+            })
+            return
+        }
+
+        // post 请求比对是否有无该用户
+        const {username, password} = ctx.request.body
+        const user = await UserModel.findOne({"username": username})
+        if (user && await bcrypt.compare(password, user.password)) {
+        // 跳转到首页
+        ctx.session.user = {
+            _id: user._id,
+            username: user.username,
+            isAdmin: user.isAdmin,
+            email: user.email
+        }
+        ctx.redirect('/')
+        } else {
+        ctx.body = '用户名或密码错误'
+        }
+    },
+
+    async signout(ctx, next) {
+        // 清除 session 跳转首页
+        ctx.session = null
+        ctx.redirect('/')
     }
 }

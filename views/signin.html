@@ -1,4 +1,4 @@
-<!-- 注册页 -->
+<!-- 登录页 -->
 
 {% extends 'views/base.html' %}
 
@@ -7,18 +7,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <form action="/signup" method="POST">
+<div class="container" style="height: 230px">
+    <form action="/signin" method="POST">
             <div class="field">
                 <div class="label">用户名</div>
                 <div class="control">
                     <input type="text" name='username' class="input" placeholder="请输入用户名">
-                </div>
-            </div>
-            <div class="field">
-                <div class="label">邮箱</div>
-                <div class="control">
-                    <input type="email" name='email' class="input" placeholder="请输入邮箱">
                 </div>
             </div>
             <div class="field">
@@ -27,18 +21,12 @@
                     <input type="password" name='password' class="input" placeholder="请输入密码">
                 </div>
             </div>
-            <div class="field">
-                <div class="label">重复密码</div>
-                <div class="control">
-                    <input type="password" name='repassword' class="input" placeholder="请确认你的密码">
-                </div>
-            </div>
             <div class="field grouped">
                 <div class="control">
-                    <button class="button btn-primary">立即注册</button>
+                    <button class="button btn-primary">立即登录</button>
                 </div>
                 <div class="control">
-                    <a href="/signin" class="button btn-text">已有账号，去登录</a>
+                    <a href="/signup" class="button btn-text">没有账号，去注册</a>
                 </div>
             </div>
         </form>

@@ -3,10 +3,14 @@ const router =  require('koa-router')()
 module.exports = (app) => {
     // 主页
     router.get('/', require('./home').index)
-    // 登录页
+    // 注册页
     router.get('/signup', require('./user').signup)
     router.post('/signup', require('./user').signup)
-
+    // 登录页
+    router.get('/signin', require('./user').signin)
+    router.post('/signin', require('./user').signin)
+    // 登出
+    router.get('/signout', require('./user').signout)
     // 添加路由中间件
     app.use(router.routes())
     // 处理 路由错误信息

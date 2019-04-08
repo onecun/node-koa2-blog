@@ -1,5 +1,5 @@
 const Koa = require('koa')
-// const path = require('path')
+const path = require('path')
 const views = require('koa-views')
 const mongoose = require('mongoose')
 const session = require('koa-session')
@@ -28,6 +28,11 @@ app.use(session({
   key: CONFIG.session.key,
   maxAge: CONFIG.session.maxAge
 }, app))
+
+app.use(async (ctx, next) => {
+  ctx.state.ctx = ctx
+  await next()
+})
 
 // 解析 post数据到 ctx.request.body
 app.use(bodyParser())
