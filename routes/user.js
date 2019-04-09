@@ -59,6 +59,7 @@ module.exports = {
     async signout(ctx, next) {
         // 清除 session 跳转首页
         ctx.session = null
+        ctx.flash = {warning: '退出登录'}
         ctx.redirect('/')
     }
 }

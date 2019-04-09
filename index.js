@@ -8,6 +8,7 @@ const static = require('koa-static')
 
 const CONFIG = require('./config/config')
 const router = require('./routes')
+const flash = require('./middlewares/flash')
 
 // 使用默认配置连接数据库
 mongoose.connect(CONFIG.mongodb)
@@ -37,8 +38,12 @@ app.use(async (ctx, next) => {
 // 解析 post数据到 ctx.request.body
 app.use(bodyParser())
 
+// 消息闪回
+app.use(flash())
+
 // 配置路由
 router(app)
+
 
 app.listen(4567, () => {
     console.log('run server http://localhost:4567')

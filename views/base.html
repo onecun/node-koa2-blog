@@ -92,5 +92,20 @@
     </div>
 
     {% block body %}{% endblock %}
+
+    <!-- 消息闪回 -->
+    {% if ctx.flash %}
+    <div class="notifications">
+        {% if ctx.flash.success %}
+        <div class="is-success notification">
+            {{ ctx.flash.success }}
+        </div>
+        {% elif ctx.flash.warning %}
+        <div class="is-warning notification">
+            {{ ctx.flash.warning }}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
 </body>
 </html>
