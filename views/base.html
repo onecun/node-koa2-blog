@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ title }}</title>
     <style>
+        /* header */
         body {
             margin: 0;
         }
@@ -65,6 +66,10 @@
             color: #3498db;
         }
     </style>
+    <style>
+    /* 消息闪现 */
+
+    </style>
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -93,19 +98,19 @@
 
     {% block body %}{% endblock %}
 
-    <!-- 消息闪回 -->
+    <!-- 消息闪回
     {% if ctx.flash %}
     <div class="notifications">
         {% if ctx.flash.success %}
         <div class="is-success notification">
             {{ ctx.flash.success }}
         </div>
-        {% elif ctx.flash.warning %}
+        {% else %}
         <div class="is-warning notification">
-            {{ ctx.flash.warning }}
+            {{ ctx.flash.success }}
         </div>
         {% endif %}
     </div>
-    {% endif %}
+    {% endif %} -->
 </body>
 </html>

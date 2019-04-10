@@ -50,6 +50,8 @@ module.exports = {
             isAdmin: user.isAdmin,
             email: user.email
         }
+        // // flash 闪现消息
+        // ctx.flash = {success: '登录成功'}
         ctx.redirect('/')
         } else {
         ctx.body = '用户名或密码错误'
@@ -57,9 +59,10 @@ module.exports = {
     },
 
     async signout(ctx, next) {
+        // // flash 闪现消息
+        // ctx.flash = {warning: '退出登录'}
         // 清除 session 跳转首页
         ctx.session = null
-        ctx.flash = {warning: '退出登录'}
         ctx.redirect('/')
     }
 }

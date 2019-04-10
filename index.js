@@ -23,6 +23,12 @@ app.use(views(path.join(__dirname, 'views'), {
     map: {html: 'nunjucks'}
 }))
 
+// 为了在 view 中使用 ctx
+app.use(async (ctx, next) => {
+  ctx.state.ctx = ctx
+  await next()
+})
+
 // 设置 session
 app.keys = ['somethings']
 app.use(session({
@@ -30,20 +36,15 @@ app.use(session({
   maxAge: CONFIG.session.maxAge
 }, app))
 
-app.use(async (ctx, next) => {
-  ctx.state.ctx = ctx
-  await next()
-})
 
 // 解析 post数据到 ctx.request.body
 app.use(bodyParser())
 
-// 消息闪回
-app.use(flash())
+// // 消息闪回
+// app.use(flash())
 
 // 配置路由
 router(app)
-
 
 app.listen(4567, () => {
     console.log('run server http://localhost:4567')
