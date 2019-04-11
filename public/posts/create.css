@@ -1,0 +1,51 @@
+.editor-header {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.editor-header .input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    padding: 2px 5px;
+    font-size: 22px;
+    outline: none;
+    color: #353535;
+}
+
+.editor-header .right-box {
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+}
+
+.editor-header .right-box .button {
+    height: 70%;
+    flex: 1;
+    width: 65px;
+    text-decoration: none;
+    background: #1abc9c;
+    padding: 4px 12px;
+    color: #fff;
+    border-radius: 3px;
+    border: none;
+}
+
+#editor {
+    display: flex;
+}
+
+#editor .input {
+    flex: 1 1 0%;
+    border: none;
+    height: 500px;
+    font-size: 20px;
+    font-family: inherit;
+    background: rgb(238, 238, 238);
+    outline: none;
+}
+
+#editor .show {
+    flex: 1;
+    padding: 10px;
+}

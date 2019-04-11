@@ -66,10 +66,6 @@
             color: #3498db;
         }
     </style>
-    <style>
-    /* 消息闪现 */
-
-    </style>
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -98,7 +94,7 @@
 
     {% block body %}{% endblock %}
 
-    <!-- 消息闪回
+    <!-- 消息闪回 -->
     {% if ctx.flash %}
     <div class="notifications">
         {% if ctx.flash.success %}
@@ -107,10 +103,10 @@
         </div>
         {% else %}
         <div class="is-warning notification">
-            {{ ctx.flash.success }}
+            {{ ctx.flash.warning }}
         </div>
         {% endif %}
     </div>
-    {% endif %} -->
+    {% endif %}
 </body>
 </html>

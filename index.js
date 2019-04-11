@@ -40,8 +40,8 @@ app.use(session({
 // 解析 post数据到 ctx.request.body
 app.use(bodyParser())
 
-// // 消息闪回
-// app.use(flash())
+// 消息闪回
+app.use(flash())
 
 // 配置路由
 router(app)

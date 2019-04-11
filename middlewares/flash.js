@@ -1,7 +1,7 @@
 // 消息闪现
-module.exports = (opt) => {
+module.exports = function(opt) {
     let key = 'flash'
-    return async (ctx, next) => {
+    return async function(ctx, next) {
         if (ctx.session === undefined) {
             throw new Error('ctx.flash requires session')
         }
