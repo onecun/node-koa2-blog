@@ -5,10 +5,22 @@ const mongoose = require('mongoose')
 const session = require('koa-session')
 const bodyParser = require('koa-bodyparser')
 const static = require('koa-static')
+const marked = require('marked')
 
 const CONFIG = require('./config/config')
 const router = require('./routes')
 const flash = require('./middlewares/flash')
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false
+})
 
 // 使用默认配置连接数据库
 mongoose.connect(CONFIG.mongodb)
@@ -26,6 +38,7 @@ app.use(views(path.join(__dirname, 'views'), {
 // 为了在 view 中使用 ctx
 app.use(async (ctx, next) => {
   ctx.state.ctx = ctx
+  ctx.state.marked = marked
   await next()
 })
 
