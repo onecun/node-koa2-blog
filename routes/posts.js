@@ -12,11 +12,11 @@ module.exports = {
     async create (ctx, next) {
         if (ctx.method === 'GET') {
             if (ctx.session.user) {
-                await ctx.render('create', {
+                await ctx.render('posts/create', {
                     title: '新建文章',
                 })
             } else {
-                ctx.redirect('/signin')
+                ctx.redirect('sign/signin')
             }
             return 
         }
@@ -36,9 +36,37 @@ module.exports = {
             path: 'author',
             select: 'username',
         })
-        await ctx.render('post', {
+        console.log('show', post.title)
+        await ctx.render('posts/post', {
             title: post.title,
             post,
         })
-    }
+    },
+
+    async edit (ctx, next) {
+        if (ctx.method === 'GET') {
+            const post = await PostModel.findById(ctx.params.id)
+            if (!post) {
+                ctx.body = '文章不存在'
+            } else if (post.author.toString() !== ctx.session.user._id.toString()) {
+                console.log(post.title, post.author, ctx.session.user._id)
+                ctx.body = '没有权限'
+            } else {
+                await ctx.render('posts/edit', {
+                    title: '更新文章',
+                    post,
+                })
+            }
+            return
+        }
+
+        const {title, content} = ctx.request.body
+        await PostModel.findByIdAndUpdate(ctx.params.id, {
+            title,
+            content,
+        })
+        ctx.flash = {success: '更新文章成功'}
+        console.log(ctx.params.id)
+        ctx.redirect(`/posts/${ctx.params.id}`)
+    },
 }

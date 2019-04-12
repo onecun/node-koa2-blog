@@ -16,8 +16,8 @@ module.exports = (app) => {
     router.get('/posts/new', require('./posts').create)
     router.post('/posts/new', require('./posts').create)
     router.get('/posts/:id', require('./posts').show)
-    // router.get('/posts/:id/edit', require('./posts').edit)
-    // router.post('/posts/:id/edit', require('./posts').edit)
+    router.get('/posts/:id/edit', require('./posts').edit)
+    router.post('/posts/:id/edit', require('./posts').edit)
     // router.get('/posts/:id/delete', require('./posts').destroy)
 
     // 添加路由中间件

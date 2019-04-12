@@ -1,6 +1,6 @@
 {% extends 'views/base.html' %}
 {% block style %}
-<link rel="stylesheet" href="create.css">
+<link rel="stylesheet" href="http://localhost:4567/posts/create.css">
 {% endblock %}
 {% block body %}
 <form action="/posts/new" method="POST">
@@ -17,19 +17,6 @@
 </form>
 {% block script %}
 <script crossorigin="anonymous" integrity="sha384-9bkP/CtE8rvBG0oqbZBIPHS/nNKbIKxm96KBRITeZlqqqIdGTETzv4yocK+P0fY4" src="https://lib.baomitu.com/marked/0.6.2/marked.min.js"></script>
-<script>
-    const e = (sel) => {
-        return document.querySelector(sel)
-    }
-    const bindEvent = (name, ele, callback) => {
-        ele.addEventListener(name, callback)
-    }
-    let input = e('#editor .input')
-    let show = e('#editor .show')
-    show.innerHTML = marked(input.value)
-    bindEvent('input', input, () => {
-        show.innerHTML = marked(input.value)
-    })
-</script>
+<script src="posts/js/edit"></script>
 {% endblock %}
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'views/base.html' %}
+{% block style %}
+<link rel="stylesheet" href="http://localhost:4567/posts/create.css">
+{% endblock %}
+{% block body %}
+<form action="/posts/{{post._id}}/edit" method="POST">
+    <header class="editor-header">
+        <input name="title" value={{post.title}} class="input is-shadowless is-radiusless" type="text" placeholder="输入文章标题...">
+        <div class="right-box">
+            <button type="submit" class="button is-small is-primary">更新</button>
+        </div>
+    </header>
+    <div id="editor">
+        <textarea  autofocus="autofocus" name="content" class="input" name="content">{{post.content}}</textarea>
+        <div class="show content markdown-body"></div>
+    </div>
+</form>
+{% block script %}
+<script crossorigin="anonymous" integrity="sha384-9bkP/CtE8rvBG0oqbZBIPHS/nNKbIKxm96KBRITeZlqqqIdGTETzv4yocK+P0fY4" src="https://lib.baomitu.com/marked/0.6.2/marked.min.js"></script>
+<script src="http://localhost:4567/posts/js/edit.js"></script>
+{% endblock %}
+{% endblock %}

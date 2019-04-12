@@ -5,7 +5,7 @@ module.exports = {
     async signup(ctx, next) {
         // get 请求时返回 模板页面
         if(ctx.method === 'GET') {
-            await ctx.render('signup', {
+            await ctx.render('sign/signup', {
                 title: '用户注册',
             })
             return
@@ -27,13 +27,13 @@ module.exports = {
         // 储存到数据库
         const result = await UserModel.create(user)
         // 去登录
-        ctx.redirect('/signin')
+        ctx.redirect('sign/signin')
     },
 
     async signin(ctx, next) {
         // get 请求时返回 模板页面
         if (ctx.method === 'GET') {
-            await ctx.render('signin', {
+            await ctx.render('sign/signin', {
                 title: '用户登录',
             })
             return

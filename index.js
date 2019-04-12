@@ -28,7 +28,7 @@ mongoose.connect(CONFIG.mongodb)
 const app = new Koa()
 
 // 配置 静态文件地址
-app.use(static('./public'));
+app.use(static(path.resolve(__dirname, "./public")))
 
 // 设置 模板
 app.use(views(path.join(__dirname, 'views'), {
