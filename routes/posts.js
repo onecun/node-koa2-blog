@@ -36,7 +36,6 @@ module.exports = {
             path: 'author',
             select: 'username',
         })
-        console.log('show', post.title)
         await ctx.render('posts/post', {
             title: post.title,
             post,
@@ -66,7 +65,19 @@ module.exports = {
             content,
         })
         ctx.flash = {success: '更新文章成功'}
-        console.log(ctx.params.id)
         ctx.redirect(`/posts/${ctx.params.id}`)
+    },
+
+    async delete (ctx, next) {
+        const post = await PostModel.findById(ctx.params.id)
+        if (!post) {
+            ctx.body = '文章不存在'
+        } else if (post.author.toString() !== ctx.session.user._id.toString()) {
+            ctx.body = '没有权限'
+        } else {
+            await PostModel.findByIdAndRemove(ctx.params.id)
+            ctx.flash = {success: '删除成功'}
+            ctx.redirect('/')
+        }
     },
 }
