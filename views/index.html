@@ -2,7 +2,50 @@
 
 {% extends 'views/base.html' %}
 
+{% block style %}
+<style>
+    .columns {
+        display: flex;
+        justify-content: center;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        margin-top: 30px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px rgba(0,0,0, 0.2);
+    }
+
+    .card {
+        padding: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+    .card-content .content a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #3498db;
+    }
+</style>
+
+{% endblock %}
+
 {% block body %}
-    <h1>{{ title }}</h1>
-    <p>{{ desc }}</p>
+<div class="container margin-top">
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            {% for post in posts %}
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        <a href="/posts/{{post._id}}">{{post.title}}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

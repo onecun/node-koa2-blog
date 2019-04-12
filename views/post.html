@@ -1,11 +1,54 @@
 {% extends 'views/base.html' %}
+
+{% block style %}
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container .columns {
+        width: 45%;
+        margin-top: 30px;
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
+    }
+
+    .box .title {
+        margin: 0;
+        padding-bottom: 2px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .box .content h1{
+        font-size: 1.7em;
+    }
+
+    .author {
+        padding-top: 5px;
+        display: flex;
+    }
+
+    .author > *, .is-pulled-right > * {
+        text-decoration: none;
+        color: #3498db;
+    }
+
+    .author a {
+        flex-grow: 2;
+    }
+</style>
+{% endblock %}
+
 {% block body %}
 <div class="container margin-top">
     <div class="columns">
         <div class="column is-8 is-offset-2">
             <div class="box markdown-body">
-                <h1>{{post.title}}</h1>
-                <div>
+                <h1 class="title">{{post.title}}</h1>
+                <div class="author">
                     作者：<a href="/user/{{post.author._id}}">{{post.author.username}}</a>
                     {% if post.author._id == ctx.session.user._id %}
                     <div class="is-pulled-right">
@@ -14,7 +57,9 @@
                     </div>
                     {% endif %}
                 </div>
-                {{marked(post.content) | safe}}
+                <div class="content">
+                    {{marked(post.content) | safe}}                    
+                </div>
             </div>
         </div>
     </div>

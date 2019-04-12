@@ -1,6 +1,14 @@
 const PostModel = require('../models/post')
 
 module.exports = {
+    async index (ctx, next1) {
+        const posts = await PostModel.find({})
+        await ctx.render('index', {
+            title: '一寸的床',
+            posts,
+        })
+    },
+
     async create (ctx, next) {
         if (ctx.method === 'GET') {
             if (ctx.session.user) {
@@ -22,6 +30,8 @@ module.exports = {
     },
 
     async show (ctx, next) {
+        // 因为之前在 Schema 中，关联了 User 集合，
+        // 所以这里直接使用 populate 引用
         const post = await PostModel.findById(ctx.params.id).populate({
             path: 'author',
             select: 'username',

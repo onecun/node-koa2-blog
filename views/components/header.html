@@ -1,0 +1,85 @@
+    <style>
+        /* header */
+        body {
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            margin-left: 200px;
+        }
+        .web-name, .homepage, .about {
+            margin-left: 15px;
+            font-size: 18px;
+            color: #373737;
+            text-decoration: none;
+        }
+
+        .sign {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 200px;
+        }
+        .signup, .signin, .create{
+            margin-right: 20px;
+            text-decoration: none;
+            background: #1abc9c;
+            padding: 4px 12px;
+            color: #fff;
+            border-radius: 3px;
+        }
+        .signin {
+            background: none;
+            border: 1px solid #373737;
+            color: #373737;
+        }
+        .username, .signout {
+            margin-right: 20px;
+            text-decoration: none;
+            padding: 4px 12px;
+            border: 1px solid #373737;
+            color: #373737;
+        }
+        .signout {
+            border: none;
+            color: #3498db;
+        }
+    </style>
+
+    <div class="header">
+        <div class="wrapper">
+            <div class="web-name">
+                一寸的床
+            </div>
+            <a href="/" class="homepage">
+                主页
+            </a>
+            <a href="/about" class="about">
+                关于
+            </a>
+        </div>
+        <div class="sign">
+            {% if ctx.session.user %}
+            <a href="/posts/new" class="create">写文章</a>
+            <span class="username">{{ ctx.session.user.username }}</span>
+            <a href="/signout" class="signout">退出</a>
+            {% else %}
+            <a href="/signup" class="signup">注册</a>
+            <a href="/signin" class="signin">登录</a>
+            {% endif %}
+        </div>
+    </div>

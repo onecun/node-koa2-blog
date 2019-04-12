@@ -2,7 +2,7 @@ const router =  require('koa-router')()
 
 module.exports = (app) => {
     // 主页
-    router.get('/', require('./home').index)
+    router.get('/', require('./posts').index)
     // 注册页
     router.get('/signup', require('./user').signup)
     router.post('/signup', require('./user').signup)
@@ -12,7 +12,7 @@ module.exports = (app) => {
     // 登出
     router.get('/signout', require('./user').signout)
     // 文章
-    // router.get('/posts', require('./posts').index)
+    router.get('/posts', require('./posts').index)
     router.get('/posts/new', require('./posts').create)
     router.post('/posts/new', require('./posts').create)
     router.get('/posts/:id', require('./posts').show)

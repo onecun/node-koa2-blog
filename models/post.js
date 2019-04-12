@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const PostSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User', // 关联 User 集合
         required: true,
     },
     title: {
