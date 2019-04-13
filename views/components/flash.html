@@ -1,12 +1,21 @@
     <!-- 消息闪回 -->
     {% if ctx.flash %}
-    <div class="notifications">
+    <div class="notifications" style="
+        position: fixed;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+        color: #fff;">
         {% if ctx.flash.success %}
-        <div class="is-success notification">
+        <div class="is-success notification" style="background: #1abc9c;
+            padding: 5px 10px;
+            border-radius: 5px;">
             {{ ctx.flash.success }}
         </div>
-        {% else %}
-        <div class="is-warning notification">
+        {% elif ctx.flash.warning %}
+        <div class="is-warning notification" style="background: #e74c3c;
+            padding: 5px 10px;
+            border-radius: 5px;">
             {{ ctx.flash.warning }}
         </div>
         {% endif %}

@@ -1,5 +1,25 @@
 const router =  require('koa-router')()
 
+// 判断是否登录的中间件
+const isLoginUser = async (ctx, next) => {
+    if (!ctx.session.user) {
+        ctx.flash = {warning: '请先登录'}
+        return ctx.redirect('/signin')
+    }
+    await next()
+}
+
+const isAdmin = async (ctx, next) => {
+    if (!ctx.session.user) {
+        ctx.flash = {warning: '请先登录'}
+        return ctx.redirect('/signin')
+    } else if (!ctx.session.user.isAdmin) {
+        ctx.flash = {warning: '没有权限'}
+        return ctx.redirect('back')
+    }
+    await next()
+}
+
 module.exports = (app) => {
     // 主页
     router.get('/', require('./posts').index)
@@ -13,11 +33,11 @@ module.exports = (app) => {
     router.get('/signout', require('./user').signout)
     // 文章
     router.get('/posts', require('./posts').index)
-    router.get('/posts/new', require('./posts').create)
-    router.post('/posts/new', require('./posts').create)
+    router.get('/posts/new', isLoginUser, require('./posts').create)
+    router.post('/posts/new', isLoginUser, require('./posts').create)
     router.get('/posts/:id', require('./posts').show)
-    router.get('/posts/:id/edit', require('./posts').edit)
-    router.post('/posts/:id/edit', require('./posts').edit)
+    router.get('/posts/:id/edit', isLoginUser, require('./posts').edit)
+    router.post('/posts/:id/edit', isLoginUser, require('./posts').edit)
     router.get('/posts/:id/delete', require('./posts').delete)
 
     // 添加路由中间件
