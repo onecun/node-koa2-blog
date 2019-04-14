@@ -40,7 +40,8 @@ module.exports = (app) => {
     router.post('/posts/:id/edit', isLoginUser, require('./posts').edit)
     router.get('/posts/:id/delete', require('./posts').delete)
     // 评论
-    
+    router.post('/comments/new', isLoginUser, require('./comments').create)
+    router.get('/comments/:id/delete', isLoginUser, require('./comments').delete)
 
     // 添加路由中间件
     app.use(router.routes())

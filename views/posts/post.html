@@ -10,6 +10,7 @@
     .container .columns {
         width: 45%;
         margin-top: 30px;
+        margin-bottom: 30px;
         border: 1px solid #ddd;
         padding: 12px;
         border-radius: 5px;
@@ -64,6 +65,10 @@
         </div>
     </div>
 </div>
+
+<!-- 引入评论 -->
+{% include 'views/components/comment.html' %}
+
 {% block script %}
 <link crossorigin="anonymous" integrity="sha384-ReCHDrYNZ7SxHyO52/TrAsPKfiyWAeE4JgRHuo1zzErmYV8Qbpfn4GVORoofqBcx" href="https://lib.baomitu.com/highlight.js/9.15.6/styles/zenburn.min.css" rel="stylesheet">
 <script crossorigin="anonymous" integrity="sha384-CWWTkjyKvLwc1j/u6LmdJiGCWFkQtH9MxBpmgzrFFwMhF5qM2u/FzXrhV3nUfs0l" src="https://lib.baomitu.com/highlight.js/9.15.6/highlight.min.js"></script>

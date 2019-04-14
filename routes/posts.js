@@ -1,4 +1,5 @@
 const PostModel = require('../models/post')
+const CommentModel = require('../models/comment')
 
 module.exports = {
     async index (ctx, next1) {
@@ -36,9 +37,16 @@ module.exports = {
             path: 'author',
             select: 'username',
         })
+        // 查找评论
+        const comments = await CommentModel.find({"postId": ctx.params.id}).populate({
+            path: 'commentator',
+            select: 'username',
+        })
+
         await ctx.render('posts/post', {
             title: post.title,
             post,
+            comments,
         })
     },
 
