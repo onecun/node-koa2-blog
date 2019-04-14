@@ -39,6 +39,8 @@ module.exports = (app) => {
     router.get('/posts/:id/edit', isLoginUser, require('./posts').edit)
     router.post('/posts/:id/edit', isLoginUser, require('./posts').edit)
     router.get('/posts/:id/delete', require('./posts').delete)
+    // 评论
+    
 
     // 添加路由中间件
     app.use(router.routes())

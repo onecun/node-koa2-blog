@@ -13,11 +13,17 @@
             {{ ctx.flash.success }}
         </div>
         {% elif ctx.flash.warning %}
-        <div class="is-warning notification" style="background: #e74c3c;
+        <div class="is-warning notification" style="background: #f1c40f;
             padding: 5px 10px;
             border-radius: 5px;">
             {{ ctx.flash.warning }}
         </div>
         {% endif %}
+        <script>
+            let n = document.querySelector('.notifications')
+            setTimeout(() => {
+                n.style.top = '-20%'
+            }, 2000);
+        </script>
     </div>
     {% endif %}
