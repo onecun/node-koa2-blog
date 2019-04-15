@@ -42,6 +42,12 @@ module.exports = (app) => {
     // 评论
     router.post('/comments/new', isLoginUser, require('./comments').create)
     router.get('/comments/:id/delete', isLoginUser, require('./comments').delete)
+    // 分类
+    router.get('/category', require('./category').list)
+    router.get('/category/new', require('./category').create)
+    router.post('/category/new', require('./category').create)
+    router.get('/category/:id/delete', require('./category').delete)
+
 
     // 添加路由中间件
     app.use(router.routes())

@@ -7,6 +7,11 @@ const PostSchema = new Schema({
         ref: 'User', // 关联 User 集合
         required: true,
     },
+    // 关联分类
+    category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+    },
     title: {
         type: String,
         required: true,
