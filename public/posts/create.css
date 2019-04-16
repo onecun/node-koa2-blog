@@ -29,6 +29,7 @@
     color: #fff;
     border-radius: 3px;
     border: none;
+    cursor: pointer;
 }
 
 #editor {

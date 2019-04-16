@@ -43,10 +43,10 @@ module.exports = (app) => {
     router.post('/comments/new', isLoginUser, require('./comments').create)
     router.get('/comments/:id/delete', isLoginUser, require('./comments').delete)
     // 分类
-    router.get('/category', require('./category').list)
-    router.get('/category/new', require('./category').create)
-    router.post('/category/new', require('./category').create)
-    router.get('/category/:id/delete', require('./category').delete)
+    router.get('/category', isAdmin, require('./category').list)
+    router.get('/category/new', isAdmin,  require('./category').create)
+    router.post('/category/new', isAdmin, require('./category').create)
+    router.get('/category/:id/delete', isAdmin, require('./category').delete)
 
 
     // 添加路由中间件

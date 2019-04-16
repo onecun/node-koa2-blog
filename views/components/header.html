@@ -34,7 +34,7 @@
             justify-content: flex-end;
             margin-right: 200px;
         }
-        .signup, .signin, .create{
+        .signup, .signin, .create, .category{
             margin-right: 20px;
             text-decoration: none;
             background: #1abc9c;
@@ -75,6 +75,9 @@
         </div>
         <div class="sign">
             {% if ctx.session.user %}
+                {% if ctx.session.user.isAdmin %}
+                    <a href="/category" class="category">分类管理</a>
+                {% endif %}
             <a href="/posts/new" class="create">写文章</a>
             <span class="username">{{ ctx.session.user.username }}</span>
             <a href="/signout" class="signout">退出</a>

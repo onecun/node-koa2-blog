@@ -1,0 +1,30 @@
+<div class="select is-small">
+    <select name="category" class="category">
+        <option disabled="disabled">分类</option>
+        {% for category in categories %}
+        <option value={{category._id}}>{{category.title}}</option>
+        {% endfor %}
+    </select>
+</div>
+<style>
+    .select {
+        margin-right: 20px;
+        height: 100%;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .category {
+        height: 70%;
+        flex: 1;
+        text-decoration: none;
+        background: #1abc9c;
+        padding: 4px 12px;
+        margin-right: 20px;
+        color: #fff;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+    }
+</style>

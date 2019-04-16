@@ -14,7 +14,7 @@
         border: 1px solid #ddd;
         padding: 12px;
         border-radius: 5px;
-        box-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .box .title {
@@ -23,7 +23,7 @@
         border-bottom: 1px solid #ccc;
     }
 
-    .box .content h1{
+    .box .content h1 {
         font-size: 1.7em;
     }
 
@@ -32,12 +32,13 @@
         display: flex;
     }
 
-    .author > *, .is-pulled-right > * {
+    .author span>*,
+    .is-pulled-right>* {
         text-decoration: none;
         color: #3498db;
     }
 
-    .author a {
+    .author span {
         flex-grow: 2;
     }
 </style>
@@ -50,7 +51,10 @@
             <div class="box markdown-body">
                 <h1 class="title">{{post.title}}</h1>
                 <div class="author">
-                    作者：<a href="/user/{{post.author._id}}">{{post.author.username}}</a>
+                    <span>
+                        作者：<a href="/user/{{post.author._id}}">{{post.author.username}}</a>
+                        分类：<a href="/posts?c={{post.category.name}}" class="tag is-primary">{{post.category.title}}</a>
+                    </span>
                     {% if post.author._id == ctx.session.user._id %}
                     <div class="is-pulled-right">
                         <a class="button is-small is-primary" href="/posts/{{post._id}}/edit">编辑</a>
@@ -59,7 +63,7 @@
                     {% endif %}
                 </div>
                 <div class="content">
-                    {{marked(post.content) | safe}}                    
+                    {{marked(post.content) | safe}}
                 </div>
             </div>
         </div>
@@ -70,10 +74,12 @@
 {% include 'views/components/comment.html' %}
 
 {% block script %}
-<link crossorigin="anonymous" integrity="sha384-ReCHDrYNZ7SxHyO52/TrAsPKfiyWAeE4JgRHuo1zzErmYV8Qbpfn4GVORoofqBcx" href="https://lib.baomitu.com/highlight.js/9.15.6/styles/zenburn.min.css" rel="stylesheet">
-<script crossorigin="anonymous" integrity="sha384-CWWTkjyKvLwc1j/u6LmdJiGCWFkQtH9MxBpmgzrFFwMhF5qM2u/FzXrhV3nUfs0l" src="https://lib.baomitu.com/highlight.js/9.15.6/highlight.min.js"></script>
+<link crossorigin="anonymous" integrity="sha384-ReCHDrYNZ7SxHyO52/TrAsPKfiyWAeE4JgRHuo1zzErmYV8Qbpfn4GVORoofqBcx"
+    href="https://lib.baomitu.com/highlight.js/9.15.6/styles/zenburn.min.css" rel="stylesheet">
+<script crossorigin="anonymous" integrity="sha384-CWWTkjyKvLwc1j/u6LmdJiGCWFkQtH9MxBpmgzrFFwMhF5qM2u/FzXrhV3nUfs0l"
+    src="https://lib.baomitu.com/highlight.js/9.15.6/highlight.min.js"></script>
 <script>
-        hljs.initHighlightingOnLoad()
+    hljs.initHighlightingOnLoad()
 </script>
 {% endblock %}
 {% endblock %}
