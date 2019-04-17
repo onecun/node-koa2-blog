@@ -52,7 +52,7 @@
                 <h1 class="title">{{post.title}}</h1>
                 <div class="author">
                     <span>
-                        作者：<a href="/user/{{post.author._id}}">{{post.author.username}}</a>
+                        作者：<a href="/user/{{post.author._id}}">{{post.author.username}}</a>&nbsp&nbsp
                         分类：<a href="/posts?c={{post.category.name}}" class="tag is-primary">{{post.category.title}}</a>
                     </span>
                     {% if post.author._id == ctx.session.user._id %}
